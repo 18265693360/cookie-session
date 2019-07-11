@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    * cookie就是浏览器上的一块空间 用来记录一些信息 在每次请求的时候 get
+    * post 只要不跨域 浏览器都会主动带上cookie 后端能够分配和设置cookie
+    * 当前设置了一个cookie给前端 浏览器会记录这个cookie 比如session_id
+    * 当每次请求时 后端根据session_id 确定请求时那个用户发起的
+    * 如果说跨域请求 是不会主动带上cookie 首先后端要明确的声明一个
+    * origin : access-control-allow-origin:(eg:https://www.vaidu.com)
+    * 前端的必须在ajax请求里边 主动声明 with-cradient:true
+    * */
+    // session cookie 都有过期时间 不可能一直保持登录态
+
+    // 小程序没有cookie  session
+
+    //后端一定要用cookie session来做小程序
+    //必须满足三个条件
+    /*
+    * 1.浏览器中的一块存储区域
+    * 2.服务器可以自动添加cookie给第一次请求
+    * 3.浏览器每次请求必须带上cookie
+    * */
+
+
+
+
+    /*
+    * 1.cookie 是后端用来记录登录状态用的
+    * 2.因为cookie最早是由响应头去设置的
+    * 3.cookie是浏览器上的一块存储空间
+    * 4.因为每次请求都会带上cookie
+    * 5.后端结合session来记录用户的登录状态
+    * */
+
+    //cookie是字符串
+    //设置cookie
+    document.cookie = "name = DD";
+    //添加属性属性值 cookie此时相当于一个属性 但是不会被覆盖
+    document.cookie = "sex = man"
+
+    //cookie 有过期时间 完全关闭会自动删除
+    //设置cookie 过期时间
+
+    const date = new Date();
+    date.setMinutes(date.getMinutes() + 1);
+    const str = date.toUTCString();
+    document.cookie = "food=dongporou; expires=" + str;
+</script>
+</html>

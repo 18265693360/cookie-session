@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //cookie本身没有删除的API  我们可以利用他的过期删除
+    function removeCookie(key) {
+        var date = new Date();
+        // -1 过期一秒就会被删除
+        date.setSeconds(date.getSeconds()-1);
+        var str = date.toUTCString();
+        console.log(str);
+        document.cookie = `${key}=1;expires=${str}`
+    }
+    removeCookie('xx');
+</script>
+</html>

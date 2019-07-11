@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // · 1.3 坑一：字符串连接符与算术运算符隐式转换规则混淆
+    // · 1.4 坑二：关系运算符：会把其他数据类型转换成number之后再比较关系
+    // · 1.5 坑三：复杂数据类型在隐式转换时会先转成String，然后再转成Number运算
+    // · 1.6-坑四：逻辑非隐式转换与关系运算符隐式转换搞混淆
+
+    // 在js中，当运算符在运算时，如果两边数据不统一，CPU就无法计算，
+    // 这时我们编译器会自动将运算符两边的数据做一个数据类型转换，
+    // 转成一样的数据类型再计算
+    // 这种无需程序员手动转换，而由编译器自动转换的方式就称为隐式转换
+    // 例如1 > "0"这行代码在js中并不会报错编译器在运算符时会先把右边的
+    // "0"转成数字0`然后
+    //隐式类型转换
+    console.log(typeof (1 + '2'));//12               string
+    console.log(typeof(1 * '2'));//2                 number
+    console.log(typeof (1 + 'string')); // 1string   string
+    console.log(typeof(1 * 'string'));//NaN          number
+    //坑一 字符串拼接符 + （有一边是字符串）
+    // 算数运算符+ （两边都是数字）
+    //1 字符串拼接符+ 把其他数据类型调用string()方法转换成字符串然后拼接
+    //2 算数运算符 把其他数据类型转换成数字然后做加法
+    //字符串连接符 String(1) + 'true' = 1true"
+    console.log(1 + 'true');//1true
+    //算数运算符
+    console.log(1 + true);//2
+    console.log(1 + undefined);//NaN
+    console.log(1 + null);//1
+
+    // -坑二：关系运算符：会把其他数据类型转换成number之后再比较关系
+    //当关系运算符两边一边是字符串的时候 会将其他数据类型使用number转换
+    console.log('2' > 10);//false
+    //两边都是字符串的时候都转换成number 比较
+    //按照字符串对应的unicode编码来转成数字
+    //查看unicode编码 .charCodeAt
+    console.log("2" > "10");// '2' charCodeAt() > '10'.charCodeAt()
+    //=50>49 = true
+    console.log("2".charCodeAt());//50
+    console.log("10".charCodeAt());//49
+    // 默认返回第一个字符的编码 如果想要第二个字符可以传参下标
+    //特殊情况
+    console.log(undefined == undefined);//true
+    console.log(undefined == null);//true
+    console.log(null == null);//true
+    //NaN与任何数据比较都是NaN
+    console.log(NaN == NaN);//false
+
+    // 坑三：复杂数据类型在隐式转换时会先转成String，然后再转成Number运算
+    // -坑四：逻辑非隐式转换与关系运算符隐式转换搞混淆
+    // o 空数组的toString()方法会得到空字符串，
+    // 而空对象的toString()方法会得到字符串`[object Object]` （
+    // 注意第一个小写o，第二个大写O哟）
+    //引用数据类型存在堆中 栈中存储的是地址 所以他们的结果是false
+    console.log({}=={})//false
+
+
+
+    // 在JavaScript中，arguments对象是当前函数的一个内置属性；
+    // 当实参比形参个数要多，剩下的实参没有办法直接获得，需要使用即将提到的arguments对象；
+    //arguments对象
+    // arguments非常类似Array，但实际上又不是一个Array实例；
+    // arguments对象的length属性显示实参的个数，函数的length属性显示形参的个数。
+
+    function test(x,y,z) {
+        console.log(test.length); //就是指其中的形参数 3
+        console.log(arguments.length);//就是指实参数  0
+        console.log(arguments.callee === test);//就是这个函数是否在运行 true
+        // callee返回正在执行的函数本身的引用。callee是arguments的一个属性，
+        // 这个属性是一个指针，指向这个拥有arguments对象的函数，
+        // （arguments是调用函数，那么这个callee就是调用函数的啦）
+        console.log(arguments[2]);//undefined
+        // 当实参比形参个数要少，剩下的形参都将设置为undefined值；
+    }
+    // test(10,20);
+    test();
+
+    function test2(x,y,z) {
+        console.log(x, y, z);// 1和2 和 undefined
+    }
+    test(1,2);
+
+    function test3(x,y,z) {
+        console.log(x, y, z);//1 2 3
+        console.log(arguments);// [1, 2, 3, 4]
+        // 类数组对象arguments非常类似Array，但实际上又不是一个Array实例。
+        console.log(typeof arguments);//object
+        console.log(arguments instanceof Array);//false
+        console.log(arguments[0]);//1
+        console.log(arguments[1]);//2
+        console.log(arguments[2]);//3
+        console.log(arguments[3]);//4
+        console.log(arguments.length);//实参个数
+
+    }
+    test3(1,2,3,4);
+    console.log(test3.length);//3 形参个数
+
+    // 在非严格模式下，当形参与实参的个数相同时，arguments对象的值和对应形参的值保持同步；
+    // 虽然形参和对应 arguments 对象的值相同，但并不是相同的命名空间；
+    // 但在严格模式下，arguments对象的值和形参的值是独立的；
+    function test6(x,y){
+        console.log(x,arguments[0]);//1 1
+        // 在非严格模式下，当形参与实参的个数相同时，arguments对象的值和对应形参的值保持同步；
+        console.log(y,arguments[1]);//2 2
+
+        x = 345;
+        console.log(x,arguments[0]);//345 345
+        // 在非严格模式下，当形参与实参的个数相同时，arguments对象的值和对应形参的值保持同步；
+        arguments[1] = 789;
+        console.log(y,arguments[1]);//789 789
+    }
+    test6(1,2);
+
+    function test7(x,y){
+        console.log(x,arguments[0]);//undefined undefined
+
+        arguments[0] = 345;
+        console.log(x,arguments[0]);//undefined 345
+        //当形参并没有对应的实参时，arguments对象的值与形参的值并不对应，
+        // 所以形参和对应arguments对象是不同的命名空间；
+    }
+    test7();
+
+    function test8(x,y){
+        'use strict'; //定义严格模式
+        console.log(x,arguments[0]);//3 3
+
+        arguments[0] = 456;
+        console.log(x,arguments[0]);//3 456
+        // 在严格模式下，arguments对象的值和形参的值是独立的；
+        x = 789;
+        console.log(x,arguments[0]);//789 456
+    }
+    test8(3);
+
+    // 在未知参数数量的情况下，可以用arguments
+    function SUM() {
+        //在未知参数数量的情况下，可以用arguments
+        var sum = 0;
+        for (var i = 0; i < arguments.length; i++){
+            sum += arguments[i];//参数累加
+        }
+        return sum;
+    }
+
+    console.log(SUM(0));
+    console.log(SUM(1, 2, 3, 4));
+
+    // arguments对象有一个callee属性，该属性是一个指针，
+    // 指向拥有这个arguments对象的函数，也就是函数本身；
+
+    // arguments.callee()返回此 arguments
+    // 对象所在的当前函数引用。
+    // 在使用函数递归调用时推荐使用arguments.callee代替函数名本身。
+
+    // function.caller()返回一个对当前函数的引用，该引用调用了当前函数；
+    // 在严格模式下，不能使 callee 和 caller 属性，会报错TypeError；
+    function fallingfactorial1 (x){//简单的阶乘
+        x = Math.round(Math.abs(x));
+        if(x <= 1){
+            return 1;
+        }else{
+            return x*fallingfactorial1 (x-1);//递归，这里需要写函数名，如果外面函数名改变，这里也得改，有点麻烦
+        }
+    }
+    console.log(fallingfactorial1(3));//6
+
+    function fallingfactorial2 (x){//简单的阶乘
+        x = Math.round(Math.abs(x));
+        if(x <= 1){
+            return 1;
+        }else{
+            console.log(arguments.callee);//fallingfactorial2(x);
+            return x*arguments.callee(x-1);//使用arguments.callee，如果外面函数名改变，这里会自己去找的
+        }
+    }
+    console.log(fallingfactorial2(5));//120
+
+    function fallingfactorial3 (x){//简单的阶乘
+        'use strict';//严格模式
+        x = Math.round(Math.abs(x));
+        if(x <= 1){
+            return 1;
+        }else{
+            return x*arguments.callee(x-1);//在严格模式下，不能使用callee属性，会报错TypeError
+        }
+    }
+    //            console.log(fallingfactorial3(5));//Uncaught TypeError
+
+    function father(){
+        son();
+    }
+
+    function son(){
+        console.log(son.caller);
+        console.log(arguments.callee.caller); //callee和caller结合使用，寻找当前函数的引用
+    }
+    son();//null
+    father();//function father(){son();}
+
+    function test9(){
+        'use strict';//严格模式
+        console.log(test9.caller); //在严格模式下，不能使用caller属性，会报错TypeError
+    }
+    //            test9();//Uncaught TypeError
+</script>
+</html>

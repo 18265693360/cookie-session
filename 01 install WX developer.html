@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+1.安装稳定版本 Stable Build
+2.申请开发者号
+
+订阅号 每天推送消息
+服务号 一个月推四次
+一年修改两次
+
+AppID(小程序ID) 开发凭证 最重要
+微信小程序一定是 https
+
+AppSecret(小程序秘钥)
+很重要 一旦丢失就会重置 不能再次查看
+
+
+开发者ID	操作
+AppID(小程序ID)	wx5fb8c096bd8d713d
+AppSecret(小程序密钥) a43418f59c70505b99205cce53644f11
+
+服务端必须是 https的协议  阿里云服务器则自动带着
+小程序不存在跨域  只能向request合法域名的地址请求
+
+微信开发者工具中
+只有 view  text  不可以直接写文字 最少也要有text包裹
+
+//JS 文件
+Page({
+所有代码都要写在 Page钩子中
+//事件处理函数
+bindViewTap: function() {
+
+数据放到data中
+data: {
+motto: 'Hello World',
+userInfo: {},
+hasUserInfo: false,
+canIUse: wx.canIUse('button.open-type.getUserInfo')
+},
+
+官方钩子  在小程序运行的时候会运行一遍
+onLoad: function () {
+if (app.globalData.userInfo) {
+this.setData({
+userInfo: app.globalData.userInfo,
+hasUserInfo: true
+})
+
+普通函数
+getUserInfo: function(e) {
+console.log(e)
+app.globalData.userInfo = e.detail.userInfo
+this.setData({
+userInfo: e.detail.userInfo,
+hasUserInfo: true
+})
+}
+
+
+//JSON文件 配置文件
+主副JSON文件
+app.json (偏UI部分)
+
+小程序多少路由 多少页面 一定要写
+写的时候分顺序  第一个一定是 主页 剩下的就没事
+"pages": [
+"pages/index/index",
+"pages/logs/logs"
+],
+
+配置页面的样子 全局配置
+"window": {
+"backgroundTextStyle": "light",
+"navigationBarBackgroundColor": "#fff",
+"navigationBarTitleText": "WeChat",
+"navigationBarTextStyle": "black"
+},
+
+
+index.json 页面配置 专有配置
+优先级别较高 可以覆盖全局配置
+
+app.wxss写样式
+为提升性能 不要用标签去配置样式 用类配置
+.container{}
+
+
+project.config.json配置文件
+含有各种 小程序信息
+是否能用ES6 等等
+
+
+页面必须写在page目录中
+且下面的子目录一定是同一个名字
+index
+index.js
+index.json
+index.wxml
+index.wxss
+
+
+app.wxss 默认样式 去除
+
+颜色不接受 单词
+
+绑定事件
+bindtap = "logSomething"
+logSomething:function(){
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+<script>
+    function test(x,y,z) {
+        console.log(test.length);
+        console.log(arguments.length);
+        console.log(arguments.callee === test);
+        console.log(arguments[2]);
+    }
+    test(10,20);
+    // test();
+
+</script>
+</html>

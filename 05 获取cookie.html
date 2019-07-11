@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //JS方法
+    //获取cookie   JS 正则表达式两种方法
+    // console.log(document.cookie);
+    // function getCookie() {
+    //     var obj = {};
+    //     var str = document.cookie;
+           //字符串转数组
+    //     var arr = str.split(';');
+    //     arr.forEach(item =>{
+    //         obj[item.split('=')[0]] = item.split('=')[1];
+    //     });
+    //     return obj;
+    // }
+    // var myCookie = getCookie();
+    // console.log(myCookie.xx);
+
+
+
+    //正则表达式
+    // document.cookie
+    // "xx=111; ww=222; ee=333; rr=444"
+    //  \w 数字 字母大小写  /g匹配全局
+    
+    //获取
+    // function getCookie() {
+    //     var reg = /(\w+)=(\w+);/g;
+    //     console.log(reg.exec(document.cookie));
+    // }
+    // getCookie();
+    
+    //使用
+    function getCookie() {
+        var obj = {};
+        var res;
+        var reg = /(\w+)=(\w+);/g
+        while (res = reg.exec(document.cookie)){
+            obj[res[1]] = res[2];
+        }
+        return obj
+    }
+    var myCookie = getCookie();
+    console.log(myCookie);
+
+    // exec()
+    // exec() 方法用于检索字符串中的正则表达式的匹配。
+    // RegExpObject.exec(string)
+    // 返回一个数组，其中存放匹配的结果。如果未找到匹配，则返回值为 null。
+    // exec() 方法的功能非常强大，它是一个通用的方法，而且使用起来也比 test() 方法以及支持正则表达式的 String 对象的方法更为复杂。
+//
+// 如果 exec() 找到了匹配的文本，则返回一个结果数组。否则，返回 null。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。除了数组元素和 length 属性之外，exec() 方法还返回两个属性。index 属性声明的是匹配文本的第一个字符的位置。input 属性则存放的是被检索的字符串 string。我们可以看得出，在调用非全局的 RegExp 对象的 exec() 方法时，返回的数组与调用方法 String.match() 返回的数组是相同的。
+//
+// 但是，当 RegExpObject 是一个全局正则表达式时，exec() 的行为就稍微复杂一些。它会在 RegExpObject 的 lastIndex 属性指定的字符处开始检索字符串 string。当 exec() 找到了与表达式相匹配的文本时，在匹配后，它将把 RegExpObject 的 lastIndex 属性设置为匹配文本的最后一个字符的下一个位置。这就是说，您可以通过反复调用 exec() 方法来遍历字符串中的所有匹配文本。当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。
+//     (3) ["xx=111;", "xx", "111", index: 0, input: "xx=111; ww=222; ee=333; rr=444", groups: undefined]
+//     0: "xx=111;"
+//     1: "xx"
+//     2: "111"
+//     groups: undefined
+//     index: 0
+//     input: "xx=111; ww=222; ee=333; rr=444"
+//     length: 3
+
+
+
+</script>
+</html>
