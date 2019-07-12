@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // Vuex 是什么？
+    // Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。
+    // 它采用集中式存储管理应用的所有组件的状态，
+    // 并以相应的规则保证状态以一种可预测的方式发生变化
+
+    //vuex相当于 交通监控中心
+
+    // Vuex 可以帮助我们管理共享状态，
+    // 并附带了更多的概念和框架这需要对短期和长期效益进行权衡。
+
+    // 如果您不打算开发大型单页应用，
+    // 使用 Vuex 可能是繁琐冗余的。
+    // 确实是如此——如果您的应用够简单，
+    // 您最好不要使用 Vuex。
+    // 一个简单的 store 模式就足够您所需了。
+    // 但是，如果您需要构建一个中大型单页应用，
+    // 您很可能会考虑如何更好地在组件外部管理状态
+    // Vuex 将会成为自然而然的选择
+
+
+    // 只用来读取的状态集中放在store中；
+    // 改变状态的方式是提交mutations，
+    // 这是个同步的事物； 异步逻辑应该封装在action中。
+    // 在main.js引入store，注入。
+    // 新建了一个目录store，….. export 。
+    // 场景有：单页应用中，组件之间的状态、
+    // 音乐播放、登录状态、加入购物车
+
+    // state
+    // Vuex 使用单一状态树,即每个应用将仅仅包含
+    // 一个store 实例，但单一状态树和模块化并不冲突。
+    // 存放的数据状态，不可以直接修改里面的数据。
+
+    // mutations
+    // mutations定义的方法动态修改Vuex 的
+    // store 中的状态或数据。
+
+    // getters
+    // 类似vue的计算属性，主要用来过滤一些数据。
+
+    // action
+    // actions可以理解为通过将mutations里面处里
+    // 数据的方法变成可异步的处理数据的方法，
+    // 简单的说就是异步操作数据。view 层通过
+    // store.dispath 来分发 action。
+
+    // 每一个 Vuex 应用的核心就是 store（仓库）。
+    // “store”基本上就是一个容器，
+    // 它包含着你的应用中大部分的状态 (state)。
+    // Vuex 和单纯的全局对象有以下两点不同：
+    // Vuex 的状态存储是响应式的。
+    // 当 Vue 组件从 store 中读取状态的时候，
+    // 若 store 中的状态发生变化，
+    // 那么相应的组件也会相应地得到高效更新。
+    // 你不能直接改变 store 中的状态。
+    // 改变 store 中的状态的唯一途径就是显式地提交
+    // (commit) mutation。这样使得我们可以方便地跟踪
+    // 每一个状态的变化，从而让我们能够实现一些工具帮助
+    // 我们更好地了解我们的应用。
+
+    const store = new Vue.Store({ //store实例
+        state: {
+            count: 0
+        },
+        mutations:{
+            increment (state){
+                state.count++
+            }
+        },
+        actions: {
+            increment(context) {
+                context.commit('increment')
+            }
+        }
+    })
+
+    // modules
+    // 项目复杂的时候 可以让每一个模块拥有自己的
+    // state mutations getter actions
+    const moduleA = {
+        state:{...},
+        mutations:{...},
+        getter:{...},
+        actions:{...}
+    }
+    // git add . (注意,后面有个点)表示添加目录下所有文件到缓存库,如果只添加某个文件,只需把 . 换成你要添加的文件名即可;
+</script>
+</html>
