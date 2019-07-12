@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    * webpack像地铁 只不过它是乘客的打包器
+    *
+    * 运行 = 处理应用程序 递归建立的依赖图 = 铁轨
+    *
+    * entry 入口就是地铁入口 也是指示应该去那一条线
+    * 指示webpack应该使用那个模块 来作为构建其内部
+    *
+    * webpack会找到那些模块是入口起点的依赖
+    * 每个依赖项随机被处理 最后输出到bundle的文件中
+    * 通过webpack配置entry属性 来指定一个入口起点
+    * 默认值 ./src
+    *
+    *
+    * output 出口
+    * 地铁出口
+    *
+    * output属性告诉webpack在哪里输出它所创建的bundles
+    * 出口告诉人=乘客在哪下地铁
+    *
+    * loader就是乘客的行李 五花八门
+    *     * loader 能够引入import 导入任何类型的文件
+    * ，这是 webpack 特有的功能，
+    * 其他打包程序或任务执行器的可能并不支持。
+    * 我们认为这种语言扩展是有很必要的，
+    * 因为这可以使开发人员创建出更准确的依赖关系图。
+    * */
+
+
+    //webpack概念
+    /*
+    * webpack针对JS程序的静态模块打包器 module bundler
+    * webpack处理应用程序时 递归的建立一个依赖关系图
+    * 其中包含应用程序运行需要的每个模块 然后将这些模块打包成
+    * 一个或者多个 bundle
+    * */
+
+
+    //四大概念
+    /*
+    * 入口 entry
+    * 入口起点 指示webpack应该使用那个模块 来作为构建其内部
+    * 依赖图的开始 进入入口起点后
+    * webpack会找到那些模块是入口起点的依赖
+    * 每个依赖项随机被处理 最后输出到bundle的文件中
+    * 通过webpack配置entry属性 来指定一个入口起点
+    * 默认值 ./src
+    * */
+
+    /*
+    * output 出口
+    * output属性告诉webpack在哪里输出它所创建的bundles
+    * 以及如何命名这些文件 默认值为./dist
+    * 整个应用程序结构 都会被指定到自己指定的输出路径中的文件夹
+    * 通过在配置中指定一个output字段来配置处理过程
+    * */
+
+    /*
+    * loader
+    * 可以让webpack处理那些非JS文件 比如CSS
+    * loader 可以将所有类型的文件转换为webpack
+    * 能够处理的有效模块 然后你就可以运用webpack的打包能力
+    * 对他们进行处理
+    *
+    * 实际上webpack将所有类型的文件 转换为应用程序的依赖图
+    * 可以直接引用的模块
+    *
+    * loader 能够引入import 导入任何类型的文件
+    * ，这是 webpack 特有的功能，
+    * 其他打包程序或任务执行器的可能并不支持。
+    * 我们认为这种语言扩展是有很必要的，
+    * 因为这可以使开发人员创建出更准确的依赖关系图。
+    *
+    *
+    * 在webpack的配置中 loader有两个属性
+    * test 属性  标识应该被对应loader转换的文件
+    * use  属性  标识进行转换时 应该使用哪个loader
+    * */
+
+    const config = {
+        output:{
+            filename: 'my-first-webpack.bundle.js'
+        },
+        module:{
+            rules:[
+                {test: /\.txt$/, use: 'raw-loader'}
+            ]
+        }
+    }
+
+    // 以上配置中，对一个单独的 module 对象定义了 rules 属性，里面包含两个必须属性：test 和 use。这告诉 webpack 编译器(compiler) 如下信息：
+    // “嘿，webpack 编译器，当你碰到「在 require()/import 语句中被解析为 '.txt' 的路径」时，在你对它打包之前，先使用 raw-loader 转换一下。”
+
+    /*
+    * plugins插件
+    * 而插件则可以用于执行范围更广的任务。插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。插件接口功能极其强大，可以用来处理各种各样的任务。
+    *想要使用一个插件，你只需要 require() 它，然后把它添加到 plugins 数组中。多数插件可以通过选项(option)自定义。你也可以在一个配置文件中因为不同目的而多次使用同一个插件，这时需要通过使用 new 操作符来创建它的一个实例。
+    * */
+</script>
+</html>
