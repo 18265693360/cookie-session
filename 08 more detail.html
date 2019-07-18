@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    for(var i=0;i<5;i++){
+        setTimeout(
+            function(){
+                console.log(i);
+                },1000)
+    };//5 5 5 5 5
+    //  for(var i =0; i < 5; i++) {
+    //     setTimeout(function(){
+    //         console.log(i);
+    //     },1000)
+    // }
+
+    // 两种方法 var -> let
+    function getNum() {
+        for (var i=0; i<5; i++){
+            console.log(i);
+        }
+    }
+    getNum();//0 1 2 3 4
+
+</script>
+</html>

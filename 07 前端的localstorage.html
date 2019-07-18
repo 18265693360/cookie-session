@@ -7,4 +7,21 @@
 <body>
 
 </body>
+<script>
+    // localStorage 无限存储 没有过期时间 有域名限制
+    // 存储大小 localStorage => 5MB
+    localStorage.setItem('DD', 'Chinese');
+    console.log(localStorage.getItem('DD'));
+    localStorage.removeItem('DD')
+    console.log(localStorage.getItem('DD'));
+
+
+    // sessionStorage 无限期存在 除非关闭浏览器
+    sessionStorage.setItem('XX', 'beauty');
+    console.log(sessionStorage.getItem('XX'));
+
+    //小程序cookie localstorage
+    //还有 JWT
+    // JSON Web Token
+</script>
 </html>

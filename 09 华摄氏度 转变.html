@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text" id="tep1"/>
+<input type="text" id="tep2"/>
+</body>
+<script>
+   var tep1 = document.getElementById("tep1");
+   var tep2 = document.getElementById("tep2");
+   tep1.onkeyup=function(){
+       tep2.value = tep1.value*9/5+32
+   }
+
+   // 定义和用法
+   // onkeyup 事件会在键盘按键被松开时发生。
+   // 提示：与onkeyup 事件相关的事件发生次序：
+   // onkeydown
+   //    onkeypress
+   //    onkeyup
+
+   // 定义和用法
+   // value 属性可设置或者返回文本域的 value 属性值。
+   // value 属性包含了默认值或用户输入的值（或通过脚本设置）。
+</script>
+</html>

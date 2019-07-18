@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // var foo = '11'+2-"1";//111
+    //先入为主 就是谁在前面 就是要转化成那种数据类型
+    // var foo = '11'+2;//112
+    // var foo = 2-"1";//1
+    // console.log(foo);
+
+
+    //验证手机号
+    // var phone = /^1[3-8]\d{9}$/
+    // var num = /^1[3-8]\d{9}$/;
+    // var str1 = "3rt234";
+    // console.log(str1);
+    // [] 表示一个原子表的开始与结束，
+
+    // () 表示分组，
+    // ()里面的内容我们可以叫它为子表达式，
+    // []里面的内容我们只可以叫它为原子表。
+    // ()表示子表达式的开始与结束。
+    // 看一个目标字符串中没有没（, ）本身。
+    // 要使用转义后的：\（   \）
+
+    // {} 表示数量相关的一个元字符，
+    // 看一个目标字符串中没有没{}本身。 要使用转义后的：\{   \}
+
+    // 看一个目标字符串中没有没[, ]本身。
+    // 要使用转义后的：\[   \]
+
+    // \d  表示十进制的数字  [0-9]
+    // \w  表示一个字 0~9  a~z  A~Z
+    // \W  表示除了 0~9  a~z  A~Z  _  以外的字符
+    // / 正则开始
+    // $ 正则结束
+    // var str = "18265693360";
+    // console.log(num.test(str));
+
+    //验证身份证
+    // var ID = /^\d{6}(1|2)\d{3}(0|1)\d[0-3]\d{4}(\d|X)$/
+    // var nn = "ertregter";
+    // console.log(nn);
+
+    //邮箱地址
+    // var email = /^[A-Z|a-z|0-9]+@[A-Z|a-z|0-9]{2,5}\.[A-Z|a-z]{2,4}$/
+    // var ni = "323423.@qq.com";
+    // console.log(ni);
+
+    //js复制一个对象
+    //1.对象属性遍历 赋给新对象
+    // var cloneObj = function (obj) {
+    //     var newObj = {};
+    //     if (obj instanceof Array){
+    //         newObj = [];
+    //     }
+    //     for (var key in obj){
+    //         var val = obj[key];
+    //         newObj[key] = typeof val === 'object' ? cloneObj(val):val;
+    //     }
+    //     return newObj;
+    // }
+    // var obj = {a:function () {console.log(this.b.c)},b:{c:1}} //设置一个对象
+    // newObj = cloneObj(obj)//复制对象
+
+
+    //方法二
+    // 将对象序列化再解析回来，对象中如果有函数function则不能正确复制
+    // var obj = {a:1,b:2}
+    // var newObj = JSON.parse(JSON.stringify(obj));
+
+    //方法三
+    // 针对数组对象的方法，用数组方法concat一个空数组
+    // var a = [1,2,3];
+    // var b = a;
+    // var c = [].concat(a);
+
+    //代码区别
+    // function Person() {}
+    // var person = Person();
+    // var person = new Person();
+    // Person()是在调用Person函数，并把返回的结果保存在变量person中；
+    // new Person()是在创建一个新的Person对象,并把对象的引用保存在变量person中。
+
+    // document load 和 document DOMContentLoaded 两个事件的区别
+    // DOMContentLoaded: DOM解析完成即触发此事件，不等待styles, images等资源的加载
+    // load：依赖的资源也已加载完成
+    // DOMContentLoaded绑定到document，load绑定到window
+
+    // DOM文档加载的步骤为
+    // 解析HTML结构。
+    // 加载外部脚本和样式表文件。
+    // 解析并执行脚本代码。
+    // DOM树构建完成。//DOMContentLoaded
+    // 加载图片等外部文件。
+    // 页面加载完毕。//load
+    // 在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。
+
+    // var foo = 'hello';
+    // (function () {
+    //     alert(foo + bar);//helloundefined
+           // var 变量提升功能
+    //     var bar = 'world';
+    //     alert(foo + bar);//helloworld
+    // })();
+    // alert(foo + bar);//报错 bar undefined
+
+
+
+    // var foo = 'hello';
+    // (function () {
+    //     console.log(bar);//此时bar的值为 undefined  下面字符串 加 值undefined
+    //     alert(foo + bar);//helloundefined
+    //     //变量提升 bar已经是一个变量  变量（var bar）提升了；
+    //     // 但是初始化 bar = 'world'不会提升 所以上面的bar = undefined
+    //     var bar = 'world';
+    //     console.log(bar);//world
+    //     alert(foo + bar);//helloworld
+    // })();
+    // alert(foo + bar);//报错 bar undefined
+    //     JavaScript 初始化不会提升
+    //     JavaScript 只有声明的变量会提升，初始化的不会。
+    //     以下两个实例结果结果不相同：
+    //     变量提升和初始化不一样
+    //eg:
+    // var x = 3;//初始化 x
+    //
+    // elem = document.getElementsByTagName('demo');
+    // elem.innerText = x + " " + yield
+    //
+    // var y = 7;//初始化y
+    // y输出 undefined 这是因为 变量声明（var y）提升了
+    //但是初始化 y = 7 并不会提升 所以 y变量是一个未定义的变量
+
+
+
+
+
+
+    // // 实现下面代码中的sum
+    // function sum(a,b) {
+    //     sum = a+b;
+    //     return sum;
+    // }
+    // console.log(sum(2, 3));
+    // // console.log(sum(2)(3));
+
+
+    // for(var i=0;i<5;i++){ setTimeout(function(){ console.log(i); },1000)
+//     setTimeout是异步执行的，1000毫秒后向任务队列里添加一个任务，只有主线上的全部执行完才会执行任务队列里的任务，所以当主线程for循环执行完之后 i 的值为5，这个时候再去任务队列中执行任务，i全部为5；
+//
+// 每次for循环的时候setTimeout都会执行，但是里面的function则不会执行被放入任务队列，因此放了5次；for循环的5次执行完之后不到1000毫秒；
+//
+// 1000毫秒后全部执行任务队列中的函数，所以就是输出五个5啦
+
+
+
+
+    // for(let i=0;i<=3;i++){ setTimeout(function() { console.log(i) }, 10);}
+//     答案：打印4次4
+//
+//     这道题涉及了异步、作用域、闭包
+//
+//     settimeout是异步执行，10ms后往任务队列里面添加一个任务，只有主线上的全部执行完，才会执行任务队列里的任务，当主线执行完成后，i是4，所以此时再去执行任务队列里的任务时，i全部是4了。对于打印4次是：
+//
+//  每一次for循环的时候，settimeout都执行一次，但是里面的函数没有被执行，而是被放到了任务队列里面，等待执行，for循环了4次，就放了4次，当主线程执行完成后，才进入任务队列里面执行。
+//     （注意：for循环从开始到结束的过程，需要维持几微秒或几毫秒。)
+//     当我把var 变成let 时
+//     for(let i=0;i<=3;i++){
+//         setTimeout(
+//             function() {
+//                 console.log(i)
+//             },10);
+//     }
+//     打印出的是：0,1,2,3
+//     当解决变量作用域，
+// 因为for循环头部的let不仅将i绑定到for循环快中，事实上它将其重新绑定到循环体的每一次迭代中，确保上一次迭代结束的值重新被赋值。setTimeout里面的function()属于一个新的域，通过 var 定义的变量是无法传入到这个函数执行域中的，通过使用 let 来声明块变量，这时候变量就能作用于这个块，所以 function就能使用 i 这个变量了；这个匿名函数的参数作用域 和 for参数的作用域 不一样，是利用了这一点来完成的。这个匿名函数的作用域有点类似类的属性，是可以被内层方法使用的。
+//
+// 查了一下百度的一个答案：
+//
+// setTimeout是一次执行函数，这里是10ms后执行，仅仅执行一次；for（var i=0;i<=3;i++）,i的每次取值都是执行setTimeout这个函数，并没有执行setTimeout里面的function（即闭包函数）,setTimeout里面的function是有setTimeout的定时触动的，也就是10ms后执行，也就是说i从0~3时，一共执行了4次的setTimeout()函数，此时的i的值是4，由于for语句的执行速度远小于1秒，所以,1秒后，由setTimeout()函数定时触动的闭包函数function()开始执行，alert(i);i的值已经是4了，所以相继打印4次i.
+
+    // sum(2,3)     5
+    // sum(2)(3)    5
+    // arguments:用在函数内部，表示传给该函数的所有的实参的集合。
+    // 虽然arguments对象并不是一个数组，但是访问单个参数的方式与访问
+    // 数组元素的方式相同。例如：arguments[0],arguments[1]...arguments[n].
+    // 回归到本题，同一个函数，但是传的实参个数不同，
+    // 此时就要考虑arguments了，判断实参个数，然后求和。
+    // function sum() {
+    //     var num = arguments[0];
+    //     if (arguments.length == 1){
+    //         return function (j) {
+    //             console.log(num + j);
+    //         }
+    //     } else{
+    //         for (var i=1; i<arguments.length; i++){
+    //             num += arguments[i];
+    //         }
+    //         console.log(num);
+    //     }
+    // }
+    // sum(2,3);
+    // sum(2)(3)
+
+    // ?
+    // [a=6,b=7,...rest] = [1,3,4,5,6,7];
+    // console.log(a);
+    // console.log(b);
+    // console.log(rest);
+    //考察默认值
+    // [a=1,b=2] = []
+    // index 0 = 1
+    // ...rest 默认后面是数组
+
+    //写出JS选中checkbox 并且设置无效
+    // document.all.cb1[0].disabled = true;
+
+    // ?
+    // var a = {x:1};
+    // var b = {x:1};
+    // var c = [1,2];
+    // var d = [1,2];
+    // console.log(a == b);//false
+    // console.log(a === b);//false
+    // console.log(c == d);//false
+    // console.log(c === d);//false
+    //对象 数组 引用数据类型 内存地址不同
+    // 好像地址不同的两个家 家具一样
+
+
+
+
+    // var a = {}
+    // var b = {key:'b'}
+    // var c = {key:"c"}
+    // a[b] = 123
+    // a[c] = 456
+    // console.log(a[b]);    //456
+    // 因为键名称只能是字符串，b/c单做键会调用toString得到的都是
+    // [object Object]，a[b],a[c]都等价于a["[object Object]"]，
+    // 那不就是更新[object Object]这个键的值了
+
+    // b + ''; // "[object Object]"
+    // c + ''; // "[object Object]"
+    // b + '' === c + ''; // true
+
+    // a["[object Object]"] = 123;
+    // a["[object Object]"] = 456;
+    // 因为键名只能为字符串，
+    // 传入对象只会被转为字符串[object Object]，a[b],a[c]
+    // 都等价于a[“[object Object]”]。
+
+    // var a={},
+    //     b={key:'b'},
+    //     c={key:'c'};
+    //
+    // a[b]=123;
+    // a[c]=456;
+    // console.log(a.valueOf());    //{[object Object]: 456}
+    // console.log(b.valueOf());    // {key: "b"}
+
+
+    // console.log(Object.keys(a));
+    // (2)为什么会发生上述情况:
+    //  首先,a[b], b其实调用了toString()方法,
+    //  注意不是valueOf方法. 由于任何对象调用默认的toString方法,
+    //  输出的结果都是
+    // "[object Object]",所以a[b],a[c]
+
+
+    // var b = {key2:2};
+    // //调用valueOf(),输出是不同的
+    // a.valueOf();
+    // b.valueOf();
+    // //调用toString(),都输出 "[object Object]"
+    // a.toString();  //"[object Object]"
+    // b.toString();  //"[object Object]"
+
+    // (function () {
+    //     console.log(1);
+    //     setTimeout(function () {
+    //         console.log(2);
+    //     },1000);
+    //     setTimeout(function () {
+    //         console.log(3);
+    //     },0);
+    //     console.log(4);
+    // })();
+    // //1,4,3,2
+    //
+    // //浮点数的特性 就是0.1不等于0.1
+    // console.log(0.1 + 0.2);//0.30000000000004
+    // console.log(0.1 + 0.2 == 0.3);//false
+
+
+    //?
+    // var arr = [];
+    // arr['a'] = a;//a 转为 nan 存不进去 数组长度不变
+    // console.log(arr.length);//0
+    // arr['2'] = 2;
+    // console.log(arr.length);//3
+    // arr.length = 0;
+    // console.log(arr);//[]
+    // arr[3] 那就是数组的第四项 前三项默认有
+    // ‘a’, ‘2’作为arr的索引值都会被自动转化成整数类型。
+    // ’a’转为NaN，存不进去，数组长度不变。
+    // ’2’转为arr，数组长度就变为3，即便前两个值没有被赋值。
+
+    // 考察字符串对象的类型
+    // function judge(val) {
+    //     switch (val) {
+    //         case"A":
+    //             console.log(1);
+    //             break
+    //         case"string":
+    //             console.log(2);
+    //             break
+    //         case"undefined":
+    //             console.log(3);
+    //             break;
+    //         case undefined:
+    //             console.log(4);
+    //             break;
+    //         default:
+    //             console.log(5);
+    //             break;
+    //     }
+    // }
+    // judge(new String("A"));
+    //
+
+
+
+    function fun(n,o) {
+        console.log(o);
+        return{
+            fun: function (m) {
+                return fun(m,n)
+            }
+        }
+    }
+
+    var a = fun(0); //undefined
+    a.fun(1);       //0
+    a.fun(2);       //0
+    a.fun(3);       //0
+
+    var b = fun(0).fun(1).fun(2).fun(3); //undefined 0 1 2
+
+    var c = fun(0).fun(1); // undefined 0  1  1
+    c.fun(2);
+    c.fun(3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
